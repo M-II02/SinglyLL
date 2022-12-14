@@ -1,0 +1,191 @@
+//Singly Linked List
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node *start=NULL;
+struct Node{
+	int data;
+	struct Node *add;
+};
+
+//1.CreateLL
+void createLL(struct Node *head)
+{
+	struct Node *Node1 = (struct Node*)malloc(sizeof(struct Node));
+	struct Node *Node2 = (struct Node *)malloc(sizeof(struct Node));
+	Node1->data=10;
+	Node1-> add = NULL;
+	Node2->data=20;
+	Node2-> add = NULL;
+	Node1->add = Node2;
+	
+	head = Node1;
+}
+
+//2.IAF
+void insertatfront(int item,struct Node **head)
+{
+	struct Node *Node1 = (struct Node*)malloc(sizeof(struct Node));
+	Node1->data =item;
+	Node1->add=NULL;
+	Node1->add=*head;
+	*head = Node1;
+}
+
+//3.IAE
+void insertatend(int item,struct Node **head)
+{
+	struct Node *s = (struct Node *)malloc(sizeof(struct Node));
+	struct Node *Node1 = (struct Node *)malloc(sizeof(struct Node));
+	Node1->data=item;
+	Node1-> add = NULL;
+	if(*head==NULL)
+		*head = Node1;
+	else{
+		s=*head;
+	while(s->add!=NULL){
+		s=s->add;
+		s->add = Node1;
+	}
+}
+}
+
+//4.IAL
+void insertafterLoc(int dataAfter,struct Node *head,int item){
+
+	struct Node *s = (struct Node*)malloc(sizeof(struct Node));
+	struct Node *Node1 = (struct Node*)malloc(sizeof(struct Node));
+	Node1->data=item;
+	Node1-> add = NULL;
+	
+	while(s->data!=dataAfter)
+		s=s->add;
+	Node1->add= s->add;
+	s->add = Node1;
+}
+
+//5.PrintLL
+void printLL(struct Node *head)
+{
+	if(head==NULL)
+	{
+		printf("\n LL is empty");
+		return;
+	}
+	while(head!=NULL){
+		printf("%d ",head->data);
+		head=head->add;
+	}
+}
+
+//6.DH
+void deleteAtHead(struct Node* head){
+	struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+	temp =head;
+	head=head->add;
+	free(temp);
+}
+
+//7.DE
+void deleteAtEnd(struct Node* head){
+	struct Node* s=(struct Node*)malloc(sizeof(struct Node));
+	s=head;
+	while(s->add->add!=NULL){
+	s=s->add;
+	}
+	free(s->add);
+	s->add=NULL;
+}
+
+//8.DAP
+void deleteAtPos(struct Node* head,int pos){
+	struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+	struct Node* s=(struct Node*)malloc(sizeof(struct Node));
+	pos--;
+	s=head;
+	while(pos>1){
+		s=s->add;
+		pos--;
+	}
+	temp=s->add;
+	s->add=s->add->add;
+	free(temp);
+}
+
+//9.Mid
+void findMid(struct Node* head){
+	struct Node* s=(struct Node*)malloc(sizeof(struct Node));
+	int count=0,Mid;
+	s=head;
+	while(s!=NULL){
+		count++;
+		s=s->add;
+	}
+	Mid=count/2;
+	if(count &1==0)
+		Mid--;
+	s=head;
+	while(Mid>0){
+		s=s->add;
+		Mid--;
+	}
+}
+
+//10.Nth Node from END
+void NthNodeEnd(struct Node* head,int loc){
+	struct Node* s=(struct Node*)malloc(sizeof(struct Node));
+	struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+	s=head;
+	temp=head;
+	while(loc>0){
+		s=s->add;
+		loc--;
+	}
+	while(s->add!=NULL){
+		temp=temp->add;
+		s=s->add;
+	}
+}
+
+int main()
+{
+	int choice,item,dataAfter,pos,loc;
+	scanf("%d%d%d",&dataAfter,&pos,&loc);
+	while(1){
+	printf("\nEnter the choice:");
+	scanf("%d",&choice);
+	
+	switch(choice){
+		case 1: createLL(start);
+		        break;
+		case 2: printf("Enter value:");
+		        scanf("%d",&item);
+		        insertatfront(item,&start);    
+		        break;
+		case 3: printf("Enter value:");
+		        scanf("%d",&item);
+		        insertatend(item,&start);    
+		        break;
+		case 4: printf("Enter value:");
+		        scanf("%d",&item);
+		        printf("Enter dataAfter:");
+		        scanf("%d",&dataAfter);
+		        insertafterLoc(dataAfter,start,item);
+		case 5: printLL(start);
+		        break;	
+		case 6: deleteAtHead(start);
+			    break;
+		case 7: deleteAtEnd(start);
+			    break;
+	    case 8: printf("Enter pos:");
+			    deleteAtPos(start,pos);
+			    break;
+	    case 9: findMid(start);
+			    break;
+		case 10:NthNodeEnd(start,loc);
+			    break; 
+		default : exit(1);
+	}					
+	}
+}
