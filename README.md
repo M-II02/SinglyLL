@@ -1,4 +1,5 @@
 # SinglyLL
 
-![Screenshot (550)](https://user-images.githubusercontent.com/105083820/207935923-b7aa86a6-b37f-4800-997e-6dc91a60596a.png)
-![Screenshot (549)](https://user-images.githubusercontent.com/105083820/207936146-a5e566d7-6634-45f7-aff4-e79d5a982e8b.png)
+![Screenshot (550)](https://user-images.githubusercontent.com/105083820/207936800-9fa3c51e-3ca0-48ad-b67d-d0a11cb5d43d.png)
+![Screenshot (549)](https://user-images.githubusercontent.com/105083820/207936813-b35b2ae3-7fdc-4d57-bf26-1d797ac7b723.png)
+
